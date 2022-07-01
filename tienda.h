@@ -2,8 +2,8 @@
 #define TIENDA_H
 
 #include <QMainWindow>
-
 #include "producto.h"
+#include "factura.h"
 
 #define IVA 12
 
@@ -21,16 +21,25 @@ public:
 
 private slots:
     void on_inProducto_currentIndexChanged(int index);
-
     void on_btnAgregar_released();
+    void on_btnFacturar_pressed();
 
 private:
     Ui::Tienda *ui;
     QList<Producto*> m_productos;
+    QString m_detalles;
+    QString Datos="";
+
     void cargarProductos();
     float m_subtotal;
-
+    float iva;
+    float total;
+    int contador=0;
+    bool checkVacio();
+    void enviarDatosdeCompra();
     void calcular(float stProducto);
+    void limpiar();
+    bool validarCedula(QString as);
 
 };
 #endif // TIENDA_H
